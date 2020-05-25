@@ -1,0 +1,20 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/bootstrap.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main class="centered">
+            <h1><%= event.title %></h1>
+            <hr>
+            <div class="image">
+                <img src="/<%= event.imageUrl %>" alt="<%= event.title %>">
+            </div>
+            <h2><%= event.price %></h2>
+            <p><%= event.description %></p>
+            <% if (isAuthenticated) { %>
+                <%- include('../includes/add-to-subscribes.ejs', {event: event}) %>
+            <% } %>
+        </main>
+        <%- include('../includes/end.ejs') %>

@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/subscribes.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if (events.length > 0) { %>
+                <ul class="subscribes__item-list">
+                    <% events.forEach(p => { %>
+                        <li class="subscribes__item">
+                            <h1><%= p.eventId.title %></h1>
+                            <h2>Quantity: <%= p.quantity %></h2>
+                            <form action="/subscribes-delete-item" method="POST">
+                                <input type="hidden" value="<%= p.eventId._id %>" name="eventId">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn danger" type="submit">Delete</button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+                <hr>
+                <div class="centered">
+                    <!--<form action="/create-order" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" class="btn">Order Now!</button>
+                    </form>-->
+                    <a class="btn" href="/checkout">Order Now!</a>
+                </div>
+                
+            <% } else { %>
+                <h1>No events in subscribes!</h1>
+            <% } %>
+        </main>
+        <%- include('../includes/end.ejs') %>

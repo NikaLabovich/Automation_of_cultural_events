@@ -1,0 +1,14 @@
+.login-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+
+}
+
+
+.vertical-center {
+  margin: 0;
+  -ms-transform: translateX(-200%);
+  transform: translateX(38%);
+}

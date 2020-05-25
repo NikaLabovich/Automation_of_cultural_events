@@ -1,0 +1,85 @@
+<script src="/js/main.js"></script>
+<footer id="colorlib-footer" role="contentinfo">
+    <div class="footer">
+        <div class="row row-pb-md">
+            <div class="col-md-3 colorlib-widget">
+                <h4> NikaToWorld</h4>
+                <p>The best place to buy your event tickets.
+                   <br> <br>You can find us here:
+                </p>
+                <p>
+                    <ul class="colorlib-social-icons">
+                        <li>
+                            <a href="https://twitter.com/VLobovitch">
+                              <img src="https://www.wan-ifra.org/sites/default/files/imagecache/field_media_image_image_body/field_media_image_file/Twitter_logo_blue.png" style="width:42px;height:38px;border:0">
+                            </a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100010175252355&ref=bookmarks">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/600px-F_icon.svg.png" style="width:42px;height:42px;border:0; margin-top: 5px;">
+                          </a></li></li>
+                    </ul>
+                </p>
+            </div>
+            <div class="col-md-2 colorlib-widget">
+                <h4>You Can See</h4>
+                <p>
+                    <ul class="colorlib-footer-links">
+                        <li><a href="/">All Events</a></li>
+                        <li><a href="contact">Contact</a></li>
+                    </ul>
+                </p>
+            </div>
+            <div class="col-md-2">
+                <h4>More Information About Events</h4>
+                <ul class="colorlib-footer-links">
+                    <li><a href="https://www.kvitki.by">Kvitki</a></li>
+                    <li><a href="https://www.bycard.by">ByCard</a></li>
+                </ul>
+            </div>
+    
+            <div class="col-md-3 col-md-push-1">
+                <h4>Contact Information</h4>
+                <ul class="colorlib-footer-links">
+                    <li>Belarus, Minsk<br> Flat: 52, Road: 16, <br>Kozyrevskaya, Leninski raion</li>
+                    <li><a href="tel://375445842381">+375445842381</a></li>
+                    <li><a href="mailto:labovitch.veronique@gmail.com">labovitch.veronique@gmail.com</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100010175252355&ref=bookmarks">Find Me On Facebook</a></li>
+                </ul>
+            </div>
+            <div id="map" class="map">                
+            </div>
+    <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 53.8685317, lng: 27.5635279};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 15, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?AIzaSyC9Cn9h1V34-P5_7LmM_ouSQKCXMXeCiUs&callback=initMap">
+    </script>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>
+    
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Developed By <a href="https://www.facebook.com/profile.php?id=100010175252355&ref=bookmarks" target="_blank">Nika Labovich</a> | Thanks To <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    
+                </p>
+            </div>
+        </div>
+    </div>
+    </footer>
+    
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+<form action="/subscribes" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button class="btn" type="submit">Add to Subscribes</button>
+    <input type="hidden" name="eventId" value="<%= event._id %>">
+</form>

@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/event.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+ 
+
+    <body>
+        <%- include('../includes/navigationA.ejs') %>
+
+            <main>
+                <% if (evens.length > 0) { %>
+                    <div class="grid">
+                        <% for (let event of evens) { %>
+                            <article class="card event-item">
+                                <header class="card__header">
+                                    <h1 class="event__title">
+                                        <%= event.title %>
+                                    </h1>
+                                </header>
+                                <div class="card__image">
+                                    <img src="/<%= event.imageUrl %>" alt="<%= event.title %>">
+                                </div>
+                                <div class="card__content">
+                                    <h2 class="event__price">$
+                                        <%= event.price %>
+                                    </h2>
+                                    <p class="event__description">
+                                        <%= event.description %>
+                                    </p>
+                                </div>
+                                <div class="card__actions">
+                                    <a href="/admin/edit-event/<%= event._id %>?edit=true" class="btn">Edit</a>
+                                    <input type="hidden" value="<%= event._id %>" name="eventId">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="btn" type="button" onclick="deleteEvent(this)">Delete</button>
+                                </div>
+                            </article>
+                            <% } %>
+                    </div>
+                    <% } else { %>
+                        <h1>No Events Found!</h1>
+                        <% } %>
+            </main>
+    </body>            <script src="/js/admin.js"></script>

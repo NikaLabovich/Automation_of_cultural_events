@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const fileHelper = require('../util/file');
 
 const { validationResult } = require('express-validator/check');
+const ITEMS_PER_PAGE = 2;
 
 const Event = require('../models/event');
 
@@ -59,7 +60,6 @@ exports.postAddEvent = (req, res, next) => {
   const imageUrl = image.path;
 
   const event = new Event({
-    // _id: new mongoose.Types.ObjectId('5badf72403fd8b5be0366e81'),
     title: title,
     price: price,
     description: description,
@@ -69,26 +69,10 @@ exports.postAddEvent = (req, res, next) => {
   event
     .save()
     .then(result => {
-      // console.log(result);
       console.log('Created event');
       res.redirect('/admin/events');
     })
     .catch(err => {
-      // return res.status(500).render('admin/edit-event', {
-      //   pageTitle: 'Add event',
-      //   path: '/admin/add-event',
-      //   editing: false,
-      //   hasError: true,
-      //   event: {
-      //     title: title,
-      //     imageUrl: imageUrl,
-      //     price: price,
-      //     description: description
-      //   },
-      //   errorMessage: 'Database operation failed, please try again.',
-      //   validationErrors: []
-      // });
-      // res.redirect('/500');
       const error = new Error(err);
       error.httpStatusCode = 500;
       return next(error);
@@ -174,15 +158,28 @@ exports.postEditEvent = (req, res, next) => {
 };
 
 exports.getEvents = (req, res, next) => {
-  Event.find({ userId: req.user._id })
-    // .select('title price -_id')
-    // .populate('userId', 'name')
+  const page = +req.query.page || 1;
+  let totalItems;
+
+  Event.find()
+    .countDocuments()
+    .then(numEvents => {
+      totalItems = numEvents;
+      return Event.find()
+        .skip((page - 1) * ITEMS_PER_PAGE)
+        .limit(ITEMS_PER_PAGE);
+    })
     .then(events => {
-      console.log(events);
       res.render('admin/events', {
         evens: events,
-        pageTitle: 'Admin events',
-        path: '/admin/events'
+        pageTitle: 'Admin Events',
+        path: '/admin/events',
+        currentPage: page,
+        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+        hasPreviousPage: page > 1,
+        nextPage: page + 1,
+        previousPage: page - 1,
+        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE)
       });
     })
     .catch(err => {

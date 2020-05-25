@@ -11,7 +11,7 @@
             <div class="image">
                 <img src="/<%= event.imageUrl %>" alt="<%= event.title %>">
             </div>
-            <h2><%= event.price %></h2>
+            <h2 class="event__price">$<%= event.price %></h2>
             <p><%= event.description %></p>
             <% if (isAuthenticated) { %>
                 <%- include('../includes/add-to-subscribes.ejs', {event: event}) %>
